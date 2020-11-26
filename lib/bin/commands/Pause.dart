@@ -1,5 +1,6 @@
+import 'package:biscuits/bin/machine/Machine.dart';
 import 'Command.dart';
-import 'Machine.dart';
+
 
 class Pause implements Command {
   Machine machine;

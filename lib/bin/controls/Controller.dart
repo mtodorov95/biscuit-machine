@@ -2,7 +2,7 @@ import 'package:biscuits/bin/commands/Command.dart';
 import 'package:biscuits/bin/commands/Pause.dart';
 import 'package:biscuits/bin/commands/TurnOff.dart';
 import 'package:biscuits/bin/commands/TurnOn.dart';
-
+import 'package:biscuits/bin/machine/Machine.dart';
 import 'Button.dart';
 
 class Controller {
