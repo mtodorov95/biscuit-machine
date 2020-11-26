@@ -52,7 +52,6 @@ class BiscuitMachine implements Machine {
       stamper.pulse(conveyor.getFirst());
       oven.cook(conveyor.getFirst());
       output.add(conveyor.removeFirst());
-      print('Output: ${output.amount()}');
     }
   }
 }

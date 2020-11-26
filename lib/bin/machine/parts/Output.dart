@@ -1,17 +1,21 @@
+import 'dart:async';
+
 import 'package:biscuits/bin/biscuits/Biscuit.dart';
 
 class Output {
   List<Biscuit> _biscuits;
+  StreamController<int> _streamController;
 
   Output() {
     _biscuits = List<Biscuit>();
+    _streamController = StreamController();
   }
+
+  Stream<int> get amount => _streamController.stream;
 
   void add(Biscuit newBiscuit) {
     _biscuits.add(newBiscuit);
+    _streamController.add(_biscuits.length);
   }
 
-  int amount() {
-    return _biscuits.length;
-  }
 }

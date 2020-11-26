@@ -4,21 +4,29 @@ import 'HeatingElement.dart';
 
 class Oven {
   bool isReady;
-  HeatingElement heater;
+  bool _isOn;
+  HeatingElement _heater;
 
   Oven() {
-    heater = HeatingElement(this);
+    _heater = HeatingElement(this);
+    _isOn = false;
     isReady = false;
   }
 
+  HeatingElement get heater => _heater;
+
   void turnOn() {
     print('Oven is on');
-    heater.turnOn();
+    _isOn = true;
+    _heater.turnOn();
   }
 
   void turnOff() {
     print('Oven is off');
-    heater.turnOff();
+    if (_isOn){
+      _isOn = false;
+      _heater.turnOff();
+    }
   }
 
   void cook(Biscuit biscuit) {

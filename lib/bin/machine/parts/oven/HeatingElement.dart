@@ -16,6 +16,8 @@ class HeatingElement {
     _currentTemp = 0;
     _isHeating = false;
   }
+  StreamController<int> _streamController = StreamController<int>();
+  Stream<int> get temperature => _streamController.stream;
 
   void turnOn() {
     _heatUp();
@@ -31,6 +33,7 @@ class HeatingElement {
       _heating = Timer.periodic(Duration(milliseconds: 50), (timer) {
         if (_currentTemp < _maxTemp) {
           _currentTemp++;
+          _streamController.add(_currentTemp);
         } else {
           print('Heating off');
           _coolOff();
@@ -52,6 +55,7 @@ class HeatingElement {
       _cooling = Timer.periodic(Duration(milliseconds: 100), (timer) {
         if (_currentTemp > _cookingTemp) {
           _currentTemp--;
+          _streamController.add(_currentTemp);
         } else {
           _oven.isReady = false;
           print('Heating on');
