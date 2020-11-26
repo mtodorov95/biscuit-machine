@@ -1,50 +1,32 @@
-import 'package:biscuits/bin/controls/Controller.dart';
-import 'package:biscuits/bin/machine/BiscuitMachine.dart';
-import 'package:biscuits/bin/machine/Machine.dart';
+import 'package:biscuits/services/MachineProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
-
+class HomePage extends StatelessWidget {
   final String title;
 
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-
-  BiscuitMachine biscuitMachine;
-  Controller machineController;
-  String machineState;
-
-  @override
-  void initState() {
-    super.initState();
-    biscuitMachine = BiscuitMachine();
-    machineController = Controller(biscuitMachine);
-    machineState = 'Machine is Off';
-  }
+  HomePage({Key key, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MachineProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Container(
         child: SizedBox.expand(
           child: Column(
             children: [
-              Text(machineState),
+              Text(provider.machineState),
               StreamBuilder<int>(
-                stream: biscuitMachine.oven.heater.temperature,
+                stream: provider.temperature,
                 builder: (context, snapshot) {
                   return Text('Oven temp: ${snapshot.data}');
                 }
               ),
               StreamBuilder<int>(
-                stream: biscuitMachine.output.amount,
+                stream: provider.output,
                 builder: (context, snapshot) {
                   return Text('Output amount: ${snapshot.data}');
                 }
@@ -56,30 +38,21 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.green,
                     child: Text('On'),
                     onPressed: (){
-                      machineController.pressOn();
-                      setState(() {
-                        machineState = 'Machine is On';
-                      });
+                      provider.turnMachineOn();
                     },
                   ),
                   RaisedButton(
                     color: Colors.orange,
                     child: Text('Pause'),
                     onPressed: (){
-                      machineController.pressPause();
-                      setState(() {
-                        machineState = 'Machine is Paused';
-                      });
+                      provider.pauseMachine();
                     },
                   ),
                   RaisedButton(
                     color: Colors.red,
                     child: Text('Off'),
                     onPressed: (){
-                      machineController.pressOff();
-                      setState(() {
-                        machineState = 'Machine is Off';
-                      });
+                      provider.turnMachineOff();
                     },
                   ),
                 ],
