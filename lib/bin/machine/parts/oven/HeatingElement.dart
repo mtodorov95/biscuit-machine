@@ -15,6 +15,7 @@ class HeatingElement {
     _maxTemp = 240;
     _cookingTemp = 220;
     _currentTemp = 0;
+    _streamController.add(_currentTemp);
     _isHeating = false;
   }
   StreamController<int> _streamController = StreamController<int>();

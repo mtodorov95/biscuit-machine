@@ -1,40 +1,49 @@
 import 'package:biscuits/bin/controls/Controller.dart';
 import 'package:biscuits/bin/machine/BiscuitMachine.dart';
-import 'package:biscuits/bin/machine/Machine.dart';
+import 'package:biscuits/bin/machine/MachineState.dart';
 import 'package:flutter/cupertino.dart';
 
 class MachineProvider extends ChangeNotifier{
   BiscuitMachine _biscuitMachine;
   Controller _machineController;
-  String _machineState;
 
   MachineProvider(){
     _biscuitMachine = BiscuitMachine();
     _machineController = Controller(_biscuitMachine);
-    _machineState = 'Machine is Off';
   }
 
-  String get machineState => _machineState;
+  String get machineState => _getMachineState();
 
   Stream<int> get temperature => _biscuitMachine.ovenTemperature;
 
   Stream<int> get output => _biscuitMachine.output;
 
+  String _getMachineState(){
+    switch(_biscuitMachine.state){
+      case MachineState.On:
+        return 'Machine is On';
+        break;
+      case MachineState.Paused:
+        return 'Machine is Paused';
+        break;
+      case MachineState.Off:
+        return 'Machine is Off';
+        break;
+    }
+  }
+
   void turnMachineOn(){
     _machineController.pressOn();
-    _machineState = 'Machine is On';
     notifyListeners();
   }
 
   void pauseMachine(){
     _machineController.pressPause();
-    _machineState = 'Machine is Paused';
     notifyListeners();
   }
 
   void turnMachineOff(){
     _machineController.pressOff();
-    _machineState = 'Machine is Off';
     notifyListeners();
   }
 }

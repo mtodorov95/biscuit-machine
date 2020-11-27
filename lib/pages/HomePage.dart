@@ -1,4 +1,5 @@
 import 'package:biscuits/services/MachineProvider.dart';
+import 'package:biscuits/widgets/TemperatureIndicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,13 +19,8 @@ class HomePage extends StatelessWidget {
         child: SizedBox.expand(
           child: Column(
             children: [
+              TemperatureIndicator(),
               Text(provider.machineState),
-              StreamBuilder<int>(
-                stream: provider.temperature,
-                builder: (context, snapshot) {
-                  return Text('Oven temp: ${snapshot.data}');
-                }
-              ),
               StreamBuilder<int>(
                 stream: provider.output,
                 builder: (context, snapshot) {

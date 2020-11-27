@@ -8,6 +8,7 @@ class Output {
   Output() {
     _biscuits = List<Biscuit>();
     _streamController = StreamController();
+    _streamController.add(_biscuits.length);
   }
 
   Stream<int> get amount => _streamController.stream;

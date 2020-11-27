@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // TODO: Extract interfaces where you can
-// TODO: Control flow for machine states i.e. can't pause if off
-// TODO: Improve the provider
+// TODO: Improve the UI
 // TODO: Cool oven back to 0 when off
 
 
