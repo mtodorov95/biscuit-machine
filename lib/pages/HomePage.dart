@@ -1,4 +1,5 @@
 import 'package:biscuits/services/MachineProvider.dart';
+import 'package:biscuits/widgets/OutputBox.dart';
 import 'package:biscuits/widgets/TemperatureIndicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,13 +20,59 @@ class HomePage extends StatelessWidget {
         child: SizedBox.expand(
           child: Column(
             children: [
-              TemperatureIndicator(),
-              Text(provider.machineState),
-              StreamBuilder<int>(
-                stream: provider.output,
-                builder: (context, snapshot) {
-                  return Text('Output amount: ${snapshot.data}');
-                }
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Column(
+                        children: [
+                          Icon(
+                            Icons.wb_sunny_rounded,
+                            color: provider.motorIsOn ? Colors.green : Colors.red,
+                          ),
+                          Text(
+                            'Motor'
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Column(
+                        children: [
+                          Icon(
+                              Icons.wb_sunny_rounded,
+                            color: provider.ovenIsOn ? Colors.green : Colors.red,
+                          ),
+                          Text(
+                              'Oven'
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  OutputBox(),
+                  TemperatureIndicator(),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  border: Border.all(
+                    color: Colors.grey[800],
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(5)
+                ),
+                  child: Text(
+                      provider.machineState,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -30,6 +30,8 @@ class BiscuitMachine implements Machine {
 
   Stream<int> get output => _output.amount;
   Stream<int> get ovenTemperature => _oven.heater.temperature;
+  bool get ovenOn => _oven.isOn;
+  bool get motorOn => _motor.isOn;
 
   @override
   void pause() {

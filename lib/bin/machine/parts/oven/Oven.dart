@@ -13,6 +13,7 @@ class Oven {
   }
 
   HeatingElement get heater => _heater;
+  bool get isOn => _isOn;
 
   void turnOn() {
     _isOn = true;

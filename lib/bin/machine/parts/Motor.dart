@@ -13,6 +13,8 @@ class Motor {
     _notPulsing = true;
   }
 
+  bool get isOn => _isOn;
+
   void turnOn() {
     _isOn = true;
     _pulse();

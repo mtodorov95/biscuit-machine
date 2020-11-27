@@ -17,6 +17,8 @@ class MachineProvider extends ChangeNotifier{
   Stream<int> get temperature => _biscuitMachine.ovenTemperature;
 
   Stream<int> get output => _biscuitMachine.output;
+  bool get ovenIsOn => _biscuitMachine.ovenOn;
+  bool get motorIsOn => _biscuitMachine.motorOn;
 
   String _getMachineState(){
     switch(_biscuitMachine.state){
