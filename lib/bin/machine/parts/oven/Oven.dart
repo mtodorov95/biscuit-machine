@@ -1,5 +1,4 @@
 import 'package:biscuits/bin/biscuits/Biscuit.dart';
-
 import 'HeatingElement.dart';
 
 class Oven {
@@ -16,13 +15,11 @@ class Oven {
   HeatingElement get heater => _heater;
 
   void turnOn() {
-    print('Oven is on');
     _isOn = true;
     _heater.turnOn();
   }
 
   void turnOff() {
-    print('Oven is off');
     if (_isOn){
       _isOn = false;
       _heater.turnOff();
@@ -30,7 +27,6 @@ class Oven {
   }
 
   void cook(Biscuit biscuit) {
-    print('Cooking...');
     biscuit.isCooked = true;
   }
 }

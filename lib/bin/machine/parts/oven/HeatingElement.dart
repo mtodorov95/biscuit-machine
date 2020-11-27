@@ -5,6 +5,7 @@ class HeatingElement {
   Oven _oven;
   Timer _heating;
   Timer _cooling;
+  Timer _toZero;
   int _maxTemp;
   int _cookingTemp;
   int _currentTemp;
@@ -24,18 +25,16 @@ class HeatingElement {
   }
 
   void _heatUp() {
-    if (_cooling != null) {
-      print('Cancel cooling');
-      _cooling.cancel();
-    }
-    if (!_isHeating) {
+    if(_toZero != null) _toZero.cancel();
+    if (_isHeating == false) {
+      print('heating');
       _isHeating = true;
       _heating = Timer.periodic(Duration(milliseconds: 50), (timer) {
         if (_currentTemp < _maxTemp) {
           _currentTemp++;
           _streamController.add(_currentTemp);
         } else {
-          print('Heating off');
+          timer.cancel();
           _coolOff();
         }
         if (_currentTemp > _cookingTemp) {
@@ -46,11 +45,7 @@ class HeatingElement {
   }
 
   void _coolOff() {
-    if (_heating != null) {
-      print('Cancel heating');
-      _heating.cancel();
-    }
-    if (_isHeating) {
+    if (_isHeating == true) {
       _isHeating = false;
       _cooling = Timer.periodic(Duration(milliseconds: 100), (timer) {
         if (_currentTemp > _cookingTemp) {
@@ -58,7 +53,7 @@ class HeatingElement {
           _streamController.add(_currentTemp);
         } else {
           _oven.isReady = false;
-          print('Heating on');
+          timer.cancel();
           turnOn();
         }
       });
@@ -66,8 +61,23 @@ class HeatingElement {
   }
 
   void turnOff() {
-    print('Stopping heating element');
     if (_cooling != null) _cooling.cancel();
     if (_heating != null) _heating.cancel();
+    _isHeating = false;
+    _coolToZero();
+  }
+
+  void _coolToZero(){
+    _toZero = Timer.periodic(Duration(milliseconds: 100), (timer) {
+      if(_currentTemp > 0){
+        _currentTemp--;
+        _streamController.add(_currentTemp);
+      } else {
+        timer.cancel();
+      }
+      if(_currentTemp <_cookingTemp){
+        _oven.isReady = false;
+      }
+    });
   }
 }

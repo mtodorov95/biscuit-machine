@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:biscuits/bin/biscuits/Biscuit.dart';
 
 class Output {

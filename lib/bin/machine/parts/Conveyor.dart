@@ -8,8 +8,6 @@ class Conveyor {
     _biscuits = Queue<Biscuit>();
   }
 
-  int get biscuits => _biscuits.length;
-
   void add(Biscuit newBiscuit) {
     _biscuits.add(newBiscuit);
   }
