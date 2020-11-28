@@ -29,8 +29,9 @@ class TemperatureIndicator extends StatelessWidget {
                   width: 40,
                   decoration: BoxDecoration(
                       border: Border.all(
-                          color: Colors.black
-                      )
+                          color: Colors.white,
+                      ),
+                    borderRadius: BorderRadius.circular(5)
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -50,7 +51,10 @@ class TemperatureIndicator extends StatelessWidget {
                 ),
                 Text(
                   '${snapshot.data} °C',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white
+                  ),
                 ),
               ],
             );

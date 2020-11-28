@@ -6,7 +6,6 @@ class Extruder {
   }
 
   Biscuit _makeBiscuit() {
-    print('Extruding...');
     return Biscuit();
   }
 }

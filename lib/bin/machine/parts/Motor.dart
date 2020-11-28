@@ -1,7 +1,6 @@
 import 'dart:async';
 import '../Machine.dart';
 
-
 class Motor {
   Timer _timer;
   Machine _machine;

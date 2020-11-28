@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // TODO: Extract interfaces where you can
-// TODO: Improve the UI
-// TODO: Cool oven back to 0 when off
-
 
 void main() {
   runApp(MyApp());
