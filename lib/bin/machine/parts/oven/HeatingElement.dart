@@ -28,9 +28,8 @@ class HeatingElement {
   void _heatUp() {
     if(_toZero != null) _toZero.cancel();
     if (_isHeating == false) {
-      print('heating');
       _isHeating = true;
-      _heating = Timer.periodic(Duration(milliseconds: 50), (timer) {
+      _heating = Timer.periodic(Duration(milliseconds: 75), (timer) {
         if (_currentTemp < _maxTemp) {
           _currentTemp++;
           _streamController.add(_currentTemp);

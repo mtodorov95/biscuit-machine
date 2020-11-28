@@ -23,24 +23,7 @@ class Dashboard extends StatelessWidget {
                     color: provider.motorIsOn ? Colors.green : Colors.black54,
                   ),
                   Text(
-                      'Extruder',
-                    style: TextStyle(
-                      color: Colors.white
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Column(
-                children: [
-                  Icon(
-                    Icons.wb_sunny_rounded,
-                    color: provider.motorIsOn ? Colors.green : Colors.black54,
-                  ),
-                  Text(
-                      'Stamper',
+                      'Motor',
                     style: TextStyle(
                         color: Colors.white
                     ),

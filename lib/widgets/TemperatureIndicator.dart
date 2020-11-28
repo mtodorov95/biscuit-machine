@@ -6,9 +6,11 @@ class TemperatureIndicator extends StatelessWidget {
 
 
   Color _getColor(int temp){
-    if(temp < 100){
+    if(temp < 80){
       return Colors.green;
-    } else if (temp < 180){
+    } else if (temp < 160){
+      return Colors.yellow;
+    } else if (temp < 220){
       return Colors.orange;
     } else {
       return Colors.red;

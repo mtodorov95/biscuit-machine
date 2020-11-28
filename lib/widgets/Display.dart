@@ -45,12 +45,23 @@ class Display extends StatelessWidget {
                           fontSize: 16,
                         ),
                       ),
-                      Text(
-                          '${snapshot.data}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Image.asset(
+                              'assets/images/biscuit.png',
+                              width: 50,
+                              height: 50,
+                          ),
+                          Text(
+                              'x ${snapshot.data}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
