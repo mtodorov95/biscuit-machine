@@ -1,7 +1,7 @@
-import 'package:biscuits/bin/controls/Controller.dart';
-import 'package:biscuits/bin/machine/BiscuitMachine.dart';
-import 'package:biscuits/bin/machine/MachineState.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:biscuits/models/controls/Controller.dart';
+import 'package:biscuits/models/machine/BiscuitMachine.dart';
+import 'package:biscuits/models/machine/MachineState.dart';
+import 'package:flutter/material.dart';
 
 class MachineProvider extends ChangeNotifier{
   BiscuitMachine _biscuitMachine;
@@ -13,9 +13,7 @@ class MachineProvider extends ChangeNotifier{
   }
 
   String get machineState => _getMachineState();
-
   Stream<int> get temperature => _biscuitMachine.ovenTemperature;
-
   Stream<int> get output => _biscuitMachine.output;
   bool get ovenIsOn => _biscuitMachine.ovenOn;
   bool get motorIsOn => _biscuitMachine.motorOn;
@@ -31,6 +29,8 @@ class MachineProvider extends ChangeNotifier{
       case MachineState.Off:
         return 'Machine is Off';
         break;
+      default:
+        return '';
     }
   }
 

@@ -14,7 +14,7 @@ class Display extends StatelessWidget {
               height: 320,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                color: Colors.grey[400]
+                color: Colors.grey[200]
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -22,7 +22,6 @@ class Display extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                     decoration: BoxDecoration(
-                        color: Colors.grey[200],
                         border: Border.all(
                           color: Colors.grey[800],
                           width: 2,

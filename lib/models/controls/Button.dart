@@ -1,4 +1,4 @@
-import 'package:biscuits/bin/commands/Command.dart';
+import 'package:biscuits/models/commands/Command.dart';
 
 class Button {
   Command command;

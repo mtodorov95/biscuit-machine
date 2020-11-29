@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:biscuits/bin/biscuits/Biscuit.dart';
+import 'package:biscuits/models/biscuits/Biscuit.dart';
 
 class Output {
   List<Biscuit> _biscuits;

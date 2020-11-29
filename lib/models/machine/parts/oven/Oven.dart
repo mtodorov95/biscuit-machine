@@ -1,4 +1,4 @@
-import 'package:biscuits/bin/biscuits/Biscuit.dart';
+import 'package:biscuits/models/biscuits/Biscuit.dart';
 import 'HeatingElement.dart';
 
 class Oven {

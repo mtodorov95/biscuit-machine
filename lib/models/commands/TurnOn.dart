@@ -1,5 +1,5 @@
 import 'Command.dart';
-import 'package:biscuits/bin/machine/Machine.dart';
+import 'package:biscuits/models/machine/Machine.dart';
 
 class TurnOn implements Command {
   Machine machine;

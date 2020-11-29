@@ -1,16 +1,15 @@
-import 'package:biscuits/bin/machine/MachineState.dart';
-import 'package:biscuits/bin/machine/parts/Conveyor.dart';
-import 'package:biscuits/bin/machine/parts/Extruder.dart';
-import 'package:biscuits/bin/machine/parts/Motor.dart';
-import 'package:biscuits/bin/machine/parts/Output.dart';
-import 'package:biscuits/bin/machine/parts/Stamper.dart';
-import 'package:biscuits/bin/machine/parts/oven/Oven.dart';
+import 'package:biscuits/models/machine/MachineState.dart';
+import 'package:biscuits/models/machine/parts/Conveyor.dart';
+import 'package:biscuits/models/machine/parts/Extruder.dart';
+import 'package:biscuits/models/machine/parts/Motor.dart';
+import 'package:biscuits/models/machine/parts/Output.dart';
+import 'package:biscuits/models/machine/parts/Stamper.dart';
+import 'package:biscuits/models/machine/parts/oven/Oven.dart';
 import 'Machine.dart';
 
 class BiscuitMachine implements Machine {
   @override
   MachineState state;
-
   Conveyor _conveyor;
   Motor _motor;
   Extruder _extruder;

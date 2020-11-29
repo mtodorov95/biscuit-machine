@@ -18,6 +18,7 @@ class HeatingElement {
     _streamController.add(_currentTemp);
     _isHeating = false;
   }
+
   StreamController<int> _streamController = StreamController<int>();
   Stream<int> get temperature => _streamController.stream;
 
@@ -26,6 +27,7 @@ class HeatingElement {
   }
 
   void _heatUp() {
+    if (_cooling != null) _cooling.cancel();
     if(_toZero != null) _toZero.cancel();
     if (_isHeating == false) {
       _isHeating = true;
@@ -45,6 +47,7 @@ class HeatingElement {
   }
 
   void _coolOff() {
+    if (_heating != null) _heating.cancel();
     if (_isHeating == true) {
       _isHeating = false;
       _cooling = Timer.periodic(Duration(milliseconds: 100), (timer) {

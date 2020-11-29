@@ -1,4 +1,4 @@
-import 'package:biscuits/bin/machine/MachineState.dart';
+import 'package:biscuits/models/machine/MachineState.dart';
 
 abstract class Machine {
   MachineState state;

@@ -1,4 +1,4 @@
-import 'package:biscuits/bin/machine/Machine.dart';
+import 'package:biscuits/models/machine/Machine.dart';
 import 'Command.dart';
 
 
