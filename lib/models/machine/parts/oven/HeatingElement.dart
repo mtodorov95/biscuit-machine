@@ -33,17 +33,19 @@ class HeatingElement {
       _isHeating = true;
       _heating = Timer.periodic(Duration(milliseconds: 75), (timer) {
         if (_currentTemp < _maxTemp) {
-          _currentTemp++;
-          _streamController.add(_currentTemp);
+          _increment();
         } else {
           timer.cancel();
           _coolOff();
         }
-        if (_currentTemp > _cookingTemp) {
-          _oven.isReady = true;
-        }
+        _updateReadyStatus();
       });
     }
+  }
+
+  void _increment(){
+    _currentTemp++;
+    _streamController.add(_currentTemp);
   }
 
   void _coolOff() {
@@ -52,13 +54,12 @@ class HeatingElement {
       _isHeating = false;
       _cooling = Timer.periodic(Duration(milliseconds: 100), (timer) {
         if (_currentTemp > _cookingTemp) {
-          _currentTemp--;
-          _streamController.add(_currentTemp);
+          _decrement();
         } else {
-          _oven.isReady = false;
           timer.cancel();
           turnOn();
         }
+        _updateReadyStatus();
       });
     }
   }
@@ -73,14 +74,24 @@ class HeatingElement {
   void _coolToZero(){
     _toZero = Timer.periodic(Duration(milliseconds: 100), (timer) {
       if(_currentTemp > 0){
-        _currentTemp--;
-        _streamController.add(_currentTemp);
+        _decrement();
       } else {
         timer.cancel();
       }
-      if(_currentTemp <_cookingTemp){
-        _oven.isReady = false;
-      }
+      _updateReadyStatus();
     });
+  }
+
+  void _decrement(){
+    _currentTemp--;
+    _streamController.add(_currentTemp);
+  }
+
+  void _updateReadyStatus(){
+    if(_currentTemp <_cookingTemp){
+      _oven.isReady = false;
+    } else {
+      _oven.isReady = true;
+    }
   }
 }

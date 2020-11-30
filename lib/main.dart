@@ -3,8 +3,6 @@ import 'package:biscuits/services/MachineProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-// TODO: Extract interfaces where you can
-
 void main() {
   runApp(MyApp());
 }
