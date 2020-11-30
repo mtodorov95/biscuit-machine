@@ -33,7 +33,7 @@ class HeatingElement {
       _isHeating = true;
       _heating = Timer.periodic(Duration(milliseconds: 75), (timer) {
         if (_currentTemp < _maxTemp) {
-          _increment();
+          _incrementTemp();
         } else {
           timer.cancel();
           _coolOff();
@@ -43,7 +43,7 @@ class HeatingElement {
     }
   }
 
-  void _increment(){
+  void _incrementTemp(){
     _currentTemp++;
     _streamController.add(_currentTemp);
   }
@@ -54,7 +54,7 @@ class HeatingElement {
       _isHeating = false;
       _cooling = Timer.periodic(Duration(milliseconds: 100), (timer) {
         if (_currentTemp > _cookingTemp) {
-          _decrement();
+          _decrementTemp();
         } else {
           timer.cancel();
           turnOn();
@@ -62,6 +62,11 @@ class HeatingElement {
         _updateReadyStatus();
       });
     }
+  }
+
+  void _decrementTemp(){
+    _currentTemp--;
+    _streamController.add(_currentTemp);
   }
 
   void turnOff() {
@@ -74,17 +79,12 @@ class HeatingElement {
   void _coolToZero(){
     _toZero = Timer.periodic(Duration(milliseconds: 100), (timer) {
       if(_currentTemp > 0){
-        _decrement();
+        _decrementTemp();
       } else {
         timer.cancel();
       }
       _updateReadyStatus();
     });
-  }
-
-  void _decrement(){
-    _currentTemp--;
-    _streamController.add(_currentTemp);
   }
 
   void _updateReadyStatus(){

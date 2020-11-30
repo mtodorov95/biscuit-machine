@@ -10,8 +10,8 @@ class Display extends StatelessWidget {
         stream: provider.output,
         builder: (context, snapshot) {
           return Container(
-              width: 480,
-              height: 320,
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.height * 0.4,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: Colors.grey[200]
